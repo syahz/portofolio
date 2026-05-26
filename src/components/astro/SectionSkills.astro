@@ -1,0 +1,26 @@
+---
+const skills = [
+  { name: 'NextJS', icon: '/img/next.svg' },
+  { name: 'JWT', icon: '/img/jwt.svg' },
+  { name: 'ExpressJS', icon: '/img/express.svg' },
+  { name: 'Figma', icon: '/img/figma.svg' },
+  { name: 'Prisma', icon: '/img/prisma.svg' },
+  { name: 'Laravel', icon: '/img/laravel.svg' },
+  { name: 'TailwindCSS', icon: '/img/tailwind.svg' },
+  { name: 'MySQL', icon: '/img/mysql.svg' }
+]
+---
+
+<section class="skills">
+  <h2>Skills</h2>
+  <div class="list-skills">
+    {
+      skills.map((skill) => (
+        <div class="skill-items">
+          <img src={skill.icon} width={27} height={27} alt={skill.name} loading="lazy" />
+          <span class="img-tooltip">{skill.name}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>

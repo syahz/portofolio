@@ -1,0 +1,46 @@
+---
+import Separator from './Separator.astro'
+
+const ListExperience = [
+  {
+    role: 'Asisten Supervisor',
+    company: 'PT Brawijaya Multi Usaha',
+    period: 'Feb 2025 - Present',
+    description: 'Built a Semi-ERP ecosystem with centralized SSO integrating internal modules (CMS, Procurement, Legal) with Talenta & Accurate via API. Stack: Next.js, Astro, Express.js, MySQL.'
+  },
+  {
+    role: 'Freelance Web Developer',
+    company: 'Ingsun',
+    period: 'Feb 2024 - Present',
+    description: 'Developed a Guidance & Counseling web app, the LPH UB profile + custom CMS, an end-to-end internal LPH system, and an online tryout platform with auto-grading and ranking.'
+  },
+  {
+    role: 'Internship',
+    company: 'Kementerian Agama Kota Malang',
+    period: 'Feb 2021 - May 2021',
+    description: 'Built the SIJIMAT monolith web (CodeIgniter3) in under 3 months, now used by the Ministry of Religion of Malang City.'
+  }
+]
+---
+
+<section class="experience">
+  <h2>Experience</h2>
+  <div class="list-experience">
+    <Separator />
+    {
+      ListExperience.map((exp) => (
+        <div>
+          <div class="exp-card">
+            <div class="exp-head">
+              <p class="exp-role">{exp.role}</p>
+              <p class="exp-period">{exp.period}</p>
+            </div>
+            <p class="exp-company">{exp.company}</p>
+            <p class="exp-desc">{exp.description}</p>
+          </div>
+          <Separator />
+        </div>
+      ))
+    }
+  </div>
+</section>

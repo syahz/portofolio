@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro'
+import SectionHead from '../components/astro/SectionHead.astro'
+import HeadSeparator from '../components/astro/HeadSeparator.astro'
+import SectionAbout from '../components/astro/SectionAbout.astro'
+import SectionExperience from '../components/astro/SectionExperience.astro'
+import SectionSkills from '../components/astro/SectionSkills.astro'
+import PreLoader from '../components/react/PreLoader.tsx'
+import Projects from '../components/react/Projects.tsx'
+import Contact from '../components/react/Contact.tsx'
+---
+
+<Layout>
+  <main>
+    <PreLoader client:only="react" />
+    <div class="container">
+      <SectionHead />
+      <HeadSeparator />
+      <SectionAbout />
+      <SectionExperience />
+      <SectionSkills />
+      <Projects client:only="react" />
+    </div>
+    <Contact client:only="react" />
+  </main>
+</Layout>
+
+<script>
+  import Lenis from 'lenis'
+
+  const lenis = new Lenis()
+  function raf(time: number) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+  }
+  requestAnimationFrame(raf)
+</script>

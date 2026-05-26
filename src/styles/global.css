@@ -1,0 +1,677 @@
+/* ===== reset + base (index.css + index.html inline reset) ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  font-family: 'IBM Plex Mono', Arial, Helvetica, sans-serif;
+  color: whitesmoke;
+}
+
+/* ===== App.css ===== */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  max-width: 960px;
+  padding: 0 2rem;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000000;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Head/SectionHead.css ===== */
+.head {
+  padding-bottom: 1rem;
+}
+.head h1 {
+  font-size: large;
+  line-height: 1.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+.head p {
+  font-size: medium;
+  margin: 0;
+  line-height: 1.5rem;
+  color: rgb(161, 161, 170);
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .head {
+    margin: 0;
+    max-width: 800px;
+  }
+  .head h1 {
+    font-size: large;
+    margin: 0;
+    padding: 0;
+  }
+
+  .head p {
+    font-size: large;
+    margin: 0;
+    line-height: 1.5rem;
+    color: rgb(161, 161, 170);
+    padding: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+}
+
+/* ===== About/SectionAbout.css ===== */
+.about {
+  line-height: 2.3;
+  padding-bottom: 2rem;
+  text-align: justify;
+  hyphens: auto;
+  font-family:
+    'Noto Sans Mono',
+    'IBM Plex Mono' serif;
+}
+
+@media (min-width: 768px) {
+  .about {
+    line-height: 1.625;
+  }
+}
+
+/* ===== Experience/SectionExperience.css ===== */
+.experience {
+  padding-bottom: 2rem;
+}
+
+.list-experience .exp-card {
+  padding: 16px 0;
+}
+
+.list-experience .exp-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.list-experience .exp-role {
+  font-size: larger;
+  color: white;
+  font-family: 'IBM Plex Mono', serif;
+  font-weight: 900;
+  margin: 0;
+}
+
+.list-experience .exp-period {
+  font-size: small;
+  font-family: 'Noto Sans Mono', serif;
+  margin: 0;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.list-experience .exp-company {
+  font-size: small;
+  font-family: 'Noto Sans Mono', serif;
+  margin: 4px 0 0;
+  opacity: 0.85;
+}
+
+.list-experience .exp-desc {
+  font-size: small;
+  font-family: 'Noto Sans Mono', serif;
+  line-height: 1.8;
+  text-align: justify;
+  margin: 8px 0 0;
+}
+
+@media (min-width: 468px) {
+  .list-experience .exp-card {
+    padding: 24px 20px;
+  }
+}
+
+/* ===== Skills/SectionSkills.css ===== */
+.skills {
+  padding-bottom: 2rem;
+}
+
+.list-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-items {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.img-tooltip {
+  visibility: hidden;
+  position: absolute;
+  bottom: 140%;
+  transform: translateX(-50%);
+  left: 50%;
+  background-color: rgb(36, 32, 32);
+  padding: 0.5em;
+  white-space: nowrap;
+  border-radius: 6px;
+  z-index: 1;
+}
+
+.skill-items:hover .img-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ===== HeadSeparator/HeadSeparator.css ===== */
+.head-separator {
+  height: 1px;
+  background-color: rgb(91, 91, 94);
+  margin-bottom: 45px;
+  position: relative;
+}
+
+.head-separator img {
+  display: none;
+}
+
+@media (min-width: 468px) {
+  .head-separator img {
+    display: block;
+    position: absolute;
+    right: 0;
+    transform: translateY(-44%);
+  }
+}
+
+/* ===== Separator/Separator.css ===== */
+.separator {
+  height: 1px;
+  background-color: rgb(91, 91, 94);
+  max-width: 960px;
+}
+
+/* ===== Projects/SectionProjects.css ===== */
+.projects {
+  padding-bottom: 2rem;
+}
+
+.list-projects .card {
+  font-size: xx-small;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.list-projects .card:hover {
+  cursor: pointer;
+  transform: scale(1.04);
+  opacity: 0.5;
+}
+
+.list-projects .card p {
+  font-size: small;
+  font-family: 'Noto Sans Mono', serif;
+  margin: 0%;
+  padding: 0%;
+}
+
+.list-projects .card .title {
+  font-size: larger;
+  color: white;
+  font-family: 'IBM Plex Mono', serif;
+  font-weight: 900;
+}
+
+@media (min-width: 468px) {
+  .list-projects .card {
+    font-size: larger;
+    display: flex;
+    padding: 30px;
+    padding-inline: 20px;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 40px);
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
+  }
+}
+
+/* ===== Projects/Modal.css ===== */
+.modalContainer {
+  height: 350px;
+  width: 400px;
+  position: absolute;
+  background-color: white;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.modalSlider {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: top 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.modal {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal img {
+  height: auto;
+}
+
+/* ===== Contact/Contact.css ===== */
+.contact {
+  background-color: #121212;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 85vh;
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+}
+
+.contact-wrapper {
+  position: fixed;
+  height: 85vh;
+  bottom: 0;
+  width: 100%;
+}
+
+.loading-contact {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  color: #fff;
+}
+
+.detail-contact {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.detail-contact img {
+  width: 20px;
+}
+
+.detail-contact a {
+  text-decoration: none;
+  color: inherit;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 0.3em;
+  font-size: small;
+  font-weight: normal;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+.detail-contact a:hover {
+  scale: 1.1;
+  opacity: 0.7;
+}
+
+@media (min-width: 498px) {
+  .detail-contact a {
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 0.3em;
+    font-size: medium;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .detail-contact {
+    transform: scale(0.5); /* Mengecilkan ukuran seluruh elemen */
+    transform-origin: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  .detail-contact img {
+    width: 35px;
+  }
+}
+
+/* ===== ProjectDetail/ProjectDetail.css ===== */
+.project-detail {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: #0d0d0d;
+  color: #ffffff;
+  overflow-y: auto;
+  font-family: 'Noto Sans Mono', monospace;
+  animation: pd-fade 0.4s ease;
+}
+
+@keyframes pd-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pd-back {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background-color: rgba(13, 13, 13, 0.7);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.pd-back:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateX(-3px);
+}
+
+.pd-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 7rem 2rem 5rem;
+}
+
+.pd-header {
+  margin-bottom: 3rem;
+}
+
+.pd-year {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  color: #29d;
+  margin-bottom: 1rem;
+}
+
+.pd-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  line-height: 1.02;
+  margin: 0;
+}
+
+.pd-subtitle {
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  opacity: 0.75;
+  margin: 0.8rem 0 0;
+}
+
+.pd-role {
+  font-size: 0.95rem;
+  opacity: 0.5;
+  margin: 1.2rem 0 0;
+}
+
+.pd-hero {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 3.5rem;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.pd-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.pd-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.pd-block h2 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #29d;
+  margin: 0 0 1rem;
+}
+
+.pd-block p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  opacity: 0.85;
+  text-align: justify;
+  margin: 0;
+}
+
+.pd-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.pd-chip {
+  padding: 0.5rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.pd-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+.pd-features li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.pd-features li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #29d;
+}
+
+.pd-visit {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  background-color: #29d;
+  color: #0d0d0d;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.pd-visit:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+@media (min-width: 640px) {
+  .pd-features {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===== PreLoader/PreLoader.css ===== */
+.loader {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100lvh;
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: #121212;
+}
+
+.loader-brand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+}
+
+.loader-iam {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  color: #29d;
+  margin: 0 0 0.6rem;
+}
+
+.loader-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 900;
+  font-size: clamp(2rem, 7vw, 4rem);
+  line-height: 0.9;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.loader-tag {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: clamp(0.7rem, 2vw, 0.95rem);
+  opacity: 0.55;
+  color: #ffffff;
+  margin: 1.2rem 0 0;
+}
+
+.loader-content {
+  position: absolute;
+  right: 5vw;
+  bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.2rem;
+}
+
+.loader-bar {
+  width: min(60vw, 360px);
+  height: 4px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.loader-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background-color: #29d;
+  transition: width 0.3s ease;
+}
+
+.loader-count {
+  margin: 0;
+  line-height: 0.85;
+  color: #ffffff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  font-size: clamp(4.5rem, 18vw, 12rem);
+}
+
+.loader-count small {
+  font-size: 0.28em;
+  font-weight: 400;
+  opacity: 0.55;
+  vertical-align: super;
+  margin-left: 0.15em;
+}
