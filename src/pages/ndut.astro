@@ -1,0 +1,295 @@
+---
+// ponytail: self-contained page, no shared Layout (that one carries portfolio SEO)
+const messageLines = [
+  'Selamat ulang tahun nduuut ku 🎂',
+  'Semoga selalu diberi kesehatan yang gak abis-abis 🌸',
+  'Rezeki auto-flowing, ngalir terus kayak notif spam 💸',
+  'Semoga bahagia selalu, no debug-debug club 😌',
+  'Semoga makin deket sama Tuhan, iman full bar 🤲',
+  'Terus apa lagi ya... 🤔',
+  'Kamu tuh core memory aku, no cap 💖',
+  'My comfort person, my green flag, my everything 🥹',
+  'Makin cantik, makin slay, makin sayang aku ya 😚',
+  'Pokoknya kamu is literally the main character 👑',
+  'Happy 27th, nduuut. Sehat, waras, bahagia — gaskeun! 🎉',
+]
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Untuk Nduuut 💖</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      :root {
+        --pink-1: #ff8fb1;
+        --pink-2: #ff5c8a;
+        --pink-3: #ffd9e6;
+        --pink-bg: #fff0f6;
+        --text: #6d214f;
+      }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Quicksand', sans-serif;
+        background: linear-gradient(160deg, #ffe3ef 0%, #ffd0e4 50%, #ffc0dd 100%);
+        color: var(--text);
+        min-height: 100dvh;
+        overflow-x: hidden;
+      }
+
+      /* floating hearts bg */
+      .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+      .hearts span {
+        position: absolute; bottom: -40px; font-size: 22px; opacity: .7;
+        animation: floatUp linear infinite;
+      }
+      @keyframes floatUp {
+        to { transform: translateY(-115dvh) rotate(360deg); opacity: 0; }
+      }
+
+      /* ---- landing / preloader ---- */
+      #landing {
+        position: fixed; inset: 0; z-index: 10;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 28px; text-align: center; padding: 24px;
+        background: linear-gradient(160deg, #ffe3ef, #ffb8d5);
+        transition: opacity .8s ease, visibility .8s ease;
+      }
+      #landing.hidden { opacity: 0; visibility: hidden; }
+      .gift {
+        font-size: clamp(70px, 22vw, 130px);
+        animation: wobble 1.6s ease-in-out infinite;
+        filter: drop-shadow(0 10px 20px rgba(255,92,138,.4));
+      }
+      @keyframes wobble {
+        0%,100% { transform: rotate(-8deg) scale(1); }
+        50% { transform: rotate(8deg) scale(1.08); }
+      }
+      #landing h1 {
+        font-family: 'Quicksand', sans-serif; font-weight: 700;
+        font-size: clamp(24px, 7vw, 40px);
+        color: var(--pink-2);
+      }
+      #landing p { font-size: clamp(14px, 4vw, 17px); opacity: .75; max-width: 320px; }
+      .landingGif {
+        width: clamp(140px, 45vw, 200px); height: auto;
+        border-radius: 24px; border: 4px solid #fff;
+        box-shadow: 0 14px 30px rgba(255,92,138,.4); background: var(--pink-3);
+      }
+      .openBtn {
+        border: none; cursor: pointer;
+        font-family: 'Quicksand', sans-serif; font-weight: 700;
+        font-size: clamp(16px, 5vw, 20px);
+        color: #fff; padding: 16px 40px; border-radius: 999px;
+        background: linear-gradient(135deg, var(--pink-1), var(--pink-2));
+        box-shadow: 0 10px 25px rgba(255,92,138,.5);
+        animation: pulse 1.8s ease-in-out infinite;
+        transition: transform .15s ease;
+      }
+      .openBtn:active { transform: scale(.94); }
+      @keyframes pulse {
+        0%,100% { transform: scale(1); box-shadow: 0 10px 25px rgba(255,92,138,.5); }
+        50% { transform: scale(1.06); box-shadow: 0 14px 34px rgba(255,92,138,.7); }
+      }
+
+      /* ---- message ---- */
+      #card {
+        position: relative; z-index: 1;
+        max-width: 820px; margin: 0 auto; padding: 32px 16px 70px;
+        min-height: 100dvh;
+        display: flex; flex-direction: column; align-items: center;
+        opacity: 0; transition: opacity 1s ease .3s;
+      }
+      #card.show { opacity: 1; }
+      .badge {
+        background: #fff; color: var(--pink-2); font-weight: 700;
+        padding: 8px 18px; border-radius: 999px; font-size: 14px;
+        box-shadow: 0 6px 16px rgba(255,92,138,.25); margin-bottom: 18px;
+      }
+      .paper {
+        background: rgba(255,255,255,.85); backdrop-filter: blur(6px);
+        border: 2px solid #fff; border-radius: 28px;
+        padding: 28px 22px; width: 100%;
+        box-shadow: 0 20px 50px rgba(255,92,138,.28);
+      }
+      #typed {
+        font-size: clamp(14px, 3.4vw, 17px); line-height: 1.55; min-height: 30vh;
+        font-weight: 500; text-align: center;
+      }
+      #typed .caret {
+        display: inline-block; width: 2px; height: 1.1em; background: var(--pink-2);
+        margin-left: 2px; vertical-align: text-bottom; animation: blink .8s step-end infinite;
+      }
+      @keyframes blink { 50% { opacity: 0; } }
+
+      .gifWrap {
+        display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+        margin-top: 26px;
+      }
+      .gifWrap img {
+        width: 130px; height: 130px; object-fit: cover;
+        border-radius: 18px; border: 3px solid #fff;
+        box-shadow: 0 10px 24px rgba(255,92,138,.3);
+        background: var(--pink-3);
+      }
+      .emojiGif {
+        width: 130px; height: 130px; border-radius: 18px; border: 3px solid #fff;
+        background: var(--pink-3); display: flex; align-items: center; justify-content: center;
+        font-size: 60px; box-shadow: 0 10px 24px rgba(255,92,138,.3);
+        animation: wobble 2s ease-in-out infinite;
+      }
+
+      .signoff {
+        margin-top: 34px; text-align: center; font-family: 'Quicksand', sans-serif;
+        color: var(--pink-2); line-height: 1.6;
+      }
+      .signoff .lyric { display: block; font-style: italic; font-weight: 500; font-size: clamp(15px, 4.2vw, 19px); opacity: .85; }
+      .signoff .sign { display: block; margin-top: 8px; font-weight: 700; font-size: clamp(18px, 5vw, 24px); }
+      .replay {
+        margin-top: 22px; border: 2px solid var(--pink-2); background: #fff;
+        color: var(--pink-2); font-weight: 700; font-family: 'Quicksand', sans-serif;
+        padding: 10px 24px; border-radius: 999px; cursor: pointer; font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hearts" id="hearts"></div>
+
+    <!-- landing -->
+    <div id="landing">
+      <img class="landingGif" id="landingGif" src="https://media.giphy.com/media/GqEagMsckM3vRsnrnP/giphy.gif" alt="nailong cute" />
+      <div class="gift" id="giftFallback" style="display:none">🎁</div>
+      <h1>Ada kejutan buat kamu 🎁</h1>
+      <p>Pencet tombol di bawah ya, nduuut.</p>
+      <button class="openBtn" id="openBtn">Buka Ucapan 💌</button>
+    </div>
+
+    <!-- message -->
+    <main id="card">
+      <div class="badge">💖 05 Juli — Hari Spesial Kamu</div>
+      <div class="paper">
+        <div id="typed"></div>
+        <div class="gifWrap" id="gifWrap"></div>
+      </div>
+      <div class="signoff">
+        <span class="lyric">"Baby, I'll be your light, your match, your burning sun."</span>
+        <span class="sign">— Zayn-mu 🥰</span>
+      </div>
+      <button class="replay" id="replay">Putar ulang 🔁</button>
+    </main>
+
+    <script define:vars={{ messageLines }}>
+      // floating hearts
+      const heartsBox = document.getElementById('hearts')
+      const emojis = ['💖','💕','🌸','✨','💗','🎀','💞']
+      for (let i = 0; i < 22; i++) {
+        const s = document.createElement('span')
+        s.textContent = emojis[i % emojis.length]
+        s.style.left = Math.random() * 100 + 'vw'
+        s.style.fontSize = 14 + Math.random() * 22 + 'px'
+        s.style.animationDuration = 6 + Math.random() * 8 + 's'
+        s.style.animationDelay = Math.random() * 8 + 's'
+        heartsBox.appendChild(s)
+      }
+
+      // cute GIFs — hotlinked; onerror falls back to an emoji tile so nothing shows broken
+      const gifs = [
+        { src: 'https://media.giphy.com/media/kZqbBT64ECtjy/giphy.gif', emoji: '🎀' },
+        { src: 'https://media.giphy.com/media/oyYeUcIwDOd3O/giphy.gif', emoji: '🐛' },
+      ]
+
+      // landing gif fallback
+      const landingGif = document.getElementById('landingGif')
+      landingGif.onerror = () => {
+        landingGif.style.display = 'none'
+        document.getElementById('giftFallback').style.display = 'block'
+      }
+
+      const typedEl = document.getElementById('typed')
+      const gifWrap = document.getElementById('gifWrap')
+      const landing = document.getElementById('landing')
+      const card = document.getElementById('card')
+
+      function renderGifs() {
+        gifWrap.innerHTML = ''
+        gifs.forEach((g) => {
+          const img = document.createElement('img')
+          img.src = g.src
+          img.alt = 'gif lucu'
+          img.loading = 'lazy'
+          img.onerror = () => {
+            const d = document.createElement('div')
+            d.className = 'emojiGif'
+            d.textContent = g.emoji
+            img.replaceWith(d)
+          }
+          gifWrap.appendChild(img)
+        })
+      }
+
+      let typing = false
+      async function typeMessage() {
+        if (typing) return
+        typing = true
+        typedEl.innerHTML = ''
+        const caret = document.createElement('span')
+        caret.className = 'caret'
+        typedEl.appendChild(caret) // caret must be in DOM before insertBefore
+        for (const line of messageLines) {
+          const p = document.createElement('div')
+          typedEl.insertBefore(p, caret)
+          for (const ch of line) {
+            p.textContent += ch
+            await sleep(38)
+          }
+          await sleep(420)
+        }
+        caret.remove()
+        renderGifs()
+        burst()
+        typing = false
+      }
+
+      const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+
+      function open() {
+        landing.classList.add('hidden')
+        card.classList.add('show')
+        burst()
+        typeMessage()
+      }
+
+      // confetti burst — pure DOM, no lib
+      function burst() {
+        const colors = ['#ff5c8a', '#ff8fb1', '#ffd9e6', '#fff', '#ffb3c6']
+        for (let i = 0; i < 60; i++) {
+          const c = document.createElement('div')
+          c.style.cssText = `position:fixed;z-index:20;top:40%;left:50%;width:10px;height:10px;
+            background:${colors[i % colors.length]};border-radius:2px;pointer-events:none;`
+          document.body.appendChild(c)
+          const ang = Math.random() * Math.PI * 2
+          const dist = 120 + Math.random() * 260
+          const x = Math.cos(ang) * dist
+          const y = Math.sin(ang) * dist - 100
+          c.animate(
+            [
+              { transform: 'translate(0,0) rotate(0)', opacity: 1 },
+              { transform: `translate(${x}px,${y + 400}px) rotate(${Math.random() * 720}deg)`, opacity: 0 },
+            ],
+            { duration: 1600 + Math.random() * 800, easing: 'cubic-bezier(.2,.6,.3,1)' }
+          ).onfinish = () => c.remove()
+        }
+      }
+
+      document.getElementById('openBtn').addEventListener('click', open)
+      document.getElementById('replay').addEventListener('click', typeMessage)
+    </script>
+  </body>
+</html>
